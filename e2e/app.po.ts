@@ -1,11 +1,12 @@
 import { browser, by, element } from 'protractor';
 
 export class AppPage {
-  navigateTo() {
-    return browser.get('/');
-  }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
-  }
+    public navigateTo() {
+        return browser.get('/');
+    }
+
+    public getParagraphText() {
+        return element(by.css('app-root h1')).getText();
+    }
 }

@@ -1,0 +1,65 @@
+<li class="list-group-item d-flex justify-content-between align-items-center"
+    [ngClass]="{ 'disabled': item.disabled }">
+
+    <div class="table-responsive">
+        <div class="row mw-100">
+            <div class="col-1" data-toggle="modal" [attr.data-target]="'#'.concat(item.key)">
+                <span>{{ item.amount }}</span>
+            </div>
+            <div class="col-2" data-toggle="modal" [attr.data-target]="'#'.concat(item.key)">
+                <span>{{ item.price.toFixed(2) }}</span>
+            </div>
+            <div class="col-5 text-center row-space" data-toggle="modal" [attr.data-target]="'#'.concat(item.key)">
+                <span>{{ item.name }}</span>
+            </div>
+
+            <div class="col-1 text-right">
+                <span class="badge badge-success badge-pill" *ngIf="!item.disabled" (click)="crossItem()">
+                    <i class="fa fa-check"></i>
+                </span>
+            </div>
+            <div class="col-1 text-right">
+                <span class="badge badge-danger badge-pill" (click)="removeFromList()">
+                    <i class="fa fa-times"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" [attr.id]="item.key" *ngIf="!item.disabled">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ item.name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="badge" aria-hidden="true">
+                            <i class="fa fa-times"></i>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <span class="float-left">
+                        <label for="amount">Set Amount: </label>
+                        <input class="form-control" id="amount" type="text" maxlength="2" [(ngModel)]="itemAmount" />
+                    </span>
+                    <span class="float-right">
+                        <p>Price per unit:</p>
+                        <p>$ {{ item.price }}</p>
+                    </span>
+                </div>
+
+                <div class="modal-footer">
+                    <span class="float-left align-baseline">
+                        <p>Total: $ {{ (item.price * itemAmount).toFixed(2) }}&nbsp;</p>
+                    </span>
+                    <span class="float-right">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveAmount()">Save changes!</button>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</li>
