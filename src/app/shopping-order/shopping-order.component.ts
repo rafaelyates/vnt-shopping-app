@@ -45,6 +45,10 @@ export class ShoppingOrderComponent implements OnInit, OnDestroy {
     }
 
     public get hasOrders(): boolean {
+        if (!this.orders) {
+            return false;
+        }
+
         return this.orders && this.orders.length > 0;
     }
 

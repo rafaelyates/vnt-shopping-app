@@ -13,22 +13,24 @@
 
         <app-header></app-header>
 
-        <div class="content flex-fill">
+        <div class="content">
             <router-outlet></router-outlet>
         </div>
-
-        <app-footer></app-footer>
     </div>
 
     <ng-template #showLogin>
-        <div class="row mt-1 align-items-center">
-            <div class="col">
-                <h6>Faça o login!</h6>
-            </div>
-            <div class="col text-right">
-                <button type="button" class="btn btn btn-outline-dark" (click)="logIn()">Login with Google!</button>
+        <div class="content login">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center">
+                    <h6>Authentication:</h6>
+                </div>
+                <div class="col-md-6 text-center">
+                    <button type="button" class="btn btn btn-outline-dark"
+                        (click)="logIn()">Login with Google!</button>
+                </div>
             </div>
         </div>
+        <app-footer></app-footer>
     </ng-template>
 
 </div>

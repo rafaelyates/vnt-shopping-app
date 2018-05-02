@@ -52,21 +52,21 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
     // Enables the user to add new items
     public get operationsEnabled(): boolean {
-        if (!this.listItems || this.listItems.length <= 0) {
-            return false;
-        }
-
-        return this.listItems.length >= 4;
+        return this.listItems && this.listItems.length >= 0;
     }
 
     // Checks if all items have been crossed
     public get itemsCrossed(): boolean {
-        return this.listItems
+        if (!this.operationsEnabled) {
+            return false;
+        }
+
+        return this.listItems.length >= 1 && this.listItems
             .every((item: ShoppingItem) => item.disabled === true);
     }
 
     public get total(): number {
-        if (!this.listItems || this.listItems.length <= 0) {
+        if (!this.operationsEnabled) {
             return 0;
         }
 
@@ -92,8 +92,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     }
 
     public orderTheList(): void {
-        // The user still need to fill the list and cross all values
-        if (!this.operationsEnabled || !this.itemsCrossed) {
+        // The user has to cross all values
+        if (!this.itemsCrossed) {
             return;
         }
 

@@ -20,6 +20,7 @@ export class ShoppingListItemComponent implements OnInit, OnDestroy {
     ) { }
 
     public ngOnInit(): void {
+        this.itemAmount = this.item.amount;
     }
 
     public ngOnDestroy(): void {
@@ -35,7 +36,7 @@ export class ShoppingListItemComponent implements OnInit, OnDestroy {
     }
 
     public saveAmount(): void {
-        if (this.itemAmount < 1) {
+        if (!this.item || this.itemAmount < 1) {
             return;
         }
 

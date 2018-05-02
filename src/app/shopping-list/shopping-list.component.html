@@ -1,9 +1,16 @@
-<div class="container">
+<div class="container list-content">
+
+    <div class="font-small inner text-center mt-0 pt-0">
+        <span class="float text-muted">
+            <small>Check all items before ordering!</small>
+        </span>
+    </div>
+
     <form>
-        <div class="input-group mt-2 mb-1">
+        <div class="input-group mt-1 mb-1">
 
             <input type="text" name="addButton" class="form-control" placeholder="Item name" maxlength="16"
-                [readonly]="operationsEnabled" [(ngModel)]="itemToAdd" />
+                [readonly]="!operationsEnabled" [(ngModel)]="itemToAdd" />
 
             <p>&nbsp;</p>
 
@@ -22,7 +29,7 @@
             </span>
             <span class="float-right order">
                 <button type="button" class="btn btn-outline-success btn-lg btn-block"
-                    [disabled]="!operationsEnabled || !itemsCrossed" (click)="orderTheList()">Order!</button>
+                    [disabled]="!itemsCrossed" (click)="orderTheList()">Order!</button>
             </span>
         </li>
     </ul>
